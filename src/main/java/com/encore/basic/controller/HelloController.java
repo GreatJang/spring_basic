@@ -1,5 +1,6 @@
 package com.encore.basic.controller;
 
+import com.encore.basic.domain.Hello;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ public class HelloController {
 //    @responseBody가 없고, return타입이 String이면 templates밑에 html파일 리턴(화면찾으러감)
 //    data만을 return할때는 @ResponseBody를 붙인다.(csr, restapi)
     @GetMapping("string") // url 뒷부분 설정
+//    @RequestMapping(value = "string", method = RequestMethod.GET)
     @ResponseBody // ResponseBody return
     public String helloString(){
         return "hello_string"; //templates밑에 "hello_string"파일을 리턴하고 파일이 없으면 에러
@@ -23,8 +25,12 @@ public class HelloController {
 
     @GetMapping("json") // url 뒷부분 설정
     @ResponseBody // ResponseBody return
-    public String helloJson(){
-        return "string"; //templates밑에 "hello_string"파일을 리턴하고 파일이 없으면 에러
+    public Hello helloJson(){
+        Hello hello = new Hello();
+        hello.setName("jang");
+        hello.setEmail("jang@naver.com");
+        hello.setPassword("123123");
+        return hello;
     }
 
     @GetMapping("screen")
@@ -52,4 +58,28 @@ public class HelloController {
         model.addAttribute("myData", id);
         return "screen";
     }
+
+//    PostMapping 테스트
+//    Form태그로 x-www 데이터 처리
+    @GetMapping("form-screen")
+    public String helloFormScreen(){
+        return "hello-form-screen";
+    }
+    @PostMapping("form-post-handle")
+//    form태그를 통한 body의 데이터 형태가 key1=value1&key2=value2
+    @ResponseBody
+    public String formPostHandle(@RequestParam(value = "name")String name,
+                                 @RequestParam(value = "email")String email,
+                                 @RequestParam(value = "password")String password){
+        System.out.println("name : " + name);
+        System.out.println("email : " + email);
+        System.out.println("password : " + password);
+        return "정상처리";
+    }
+
+
+//    json데이터 처리
+//    @GetMapping("json-screen")
+//    @PostMapping("json-post-handle")
+
 }
