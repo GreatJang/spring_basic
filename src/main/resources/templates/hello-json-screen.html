@@ -3,13 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>hello json screen</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <form action="http://localhost:8080/hello/form-post-handle" method="POST"> <!-- form 형식 기본 -->
-        <p>name : <input type="text" name="name"></p>
-        <p>email : <input type="text" name="email"></p>
-        <p>password : <input type="password" name="password"></p>
-        <input type="submit" value="제출">
+    <form id="myForm"> <!-- form 형식 기본 -->
+        <p>name : <input id="name" type="text" name="name"></p>
+        <p>email : <input id="email" type="text" name="email"></p>
+        <p>password : <input id="password" type="password" name="password"></p>
+        <p><button type="button" onclick="sendData()">제출</button></p>
     </form>
+    <script>
+        async function sendData(){
+            const jsonData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value
+            }
+            try {
+                const response = await axios({ // response에 요청의 결과값이 들어감
+                    method: 'POST',
+                    url: "http://localhost:8080/hello/json-post-handle3",
+                    data: JSON.stringify(jsonData),
+                    headers: {'Content-Type': 'application/json'}
+                });
+                window.location.href = '/hello/screen' // 화면이동시키는 명령어
+            }catch (e) {
+                console.log(e);
+            }
+        }
+
+    </script>
 </body>
 </html>
