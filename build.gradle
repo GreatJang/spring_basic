@@ -13,7 +13,7 @@ java {
 
 repositories {
 	// 의존성(라이브러리)을 가져오는 대상 repository(저장소)
-	//	내부망에 구축되어 있는 프로젝트의 경우 nexus와 같은 라이브러리를 사용하여 내부망 repiository사용
+	//	내부망에 구축되어 있는 프로젝트의 경우 nexus와 같은 라이브러리를 사용하여 내부망 repository사용
 	// maven { url "http://nexus.XXXXX.com:8081/nexus/content/groups/public/" }
 	mavenCentral()
 }

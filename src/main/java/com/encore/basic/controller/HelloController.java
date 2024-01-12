@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("hello")
 @Controller // http 통신을 굉장히 편하게 할 수 있다.
-//모든 요청에 ResponseBody를 붙이고 싶다며느 RestController사용
+//모든 요청에 ResponseBody를 붙이고 싶다면 RestController사용
 //@RestController : 데이터만 주어야 하는 상황에 모든 부분에 ResponseBody를 붙여야하는데 그와 같은 역할을 해준다.
 //데이터만 주어야하는 상황 -> 프론트가 따로있는 상황(CSR, react나 vue를 사용하고있구나 생각
 // 클래스차원에서 url경로를 지정하고 싶다면 @RequestMapping을 클래스 위에 선언하면서 경로지정
-//!!!
+
 public class HelloController {
 
 //    @responseBody가 없고, return타입이 String이면 templates밑에 html파일 리턴(화면찾으러감)
