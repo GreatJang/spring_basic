@@ -6,14 +6,17 @@
 </head>
 <body>
 <div th:replace="/member/header :: headerFragment"></div>
-        <h2>회원목록조회 결과</h2>
-        <table>
-            <tr><th>이름</th><th>이메일</th><th>패스워드</th></tr>
-            <tr th:each = "memberResDto :${memberList}">
-                <td th:text = "${memberResDto.name}"></td>
-                <td th:text = "${memberResDto.email}"></td>
-                <td th:text = "${memberResDto.password}"></td>
-            </tr>
-        </table>
+<h2>회원목록조회 결과</h2>
+<table>
+    <tr><th>id</th><th>이름</th><th>이메일</th></tr>
+    <tr th:each = "memberResDto :${memberList}">
+        <td th:text = "${memberResDto.id}"></td>
+        <td th:text = "${memberResDto.name}"></td>
+        <td th:text = "${memberResDto.email}"></td>
+<!--        member/find?id=xx 방식으로 요청 -->
+<!--        @는 타임리프(th)의 링크 url표현식-->
+        <td><a th:href="@{/member/find(id=${memberResDto.id})}">상세보기</a></td>
+    </tr>
+</table>
 </body>
 </html>
