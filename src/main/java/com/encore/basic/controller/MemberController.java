@@ -1,33 +1,38 @@
 package com.encore.basic.controller;
 
-import com.encore.basic.domain.Member;
+import com.encore.basic.domain.MemberRequestDto;
+import com.encore.basic.service.MemberService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MemberController {
-    @GetMapping("members")
-    public String members(){
-        return "/member/member-list";
+
+    private final MemberService memberService; // 최초세팅하고 그 이후에는 수정 불가 상수로 세팅
+    MemberController(){
+        memberService = new MemberService(); // 객체 만듦
+    }
+    @GetMapping("/")
+    public String header(){
+        return "/member/header";
     }
 
-    @GetMapping("/member/create-screen")
-    public String createScreen(){
-        return "/member/member-create";
+    @GetMapping("/member/create")
+    public String memberCreateScreen(){
+        return "/member/member-create-screen";
     }
 
     @PostMapping("/member/create")
-    @ResponseBody
-    public String memberCreate(@RequestBody Member member){
-        System.out.println(member);
-        return "member";
+    public String memberCreate(MemberRequestDto memberRequestDto){
+        memberService.memberCreate(memberRequestDto);
+        return "/member/header";
     }
 
-    @GetMapping("/member/create-clear")
-    public String createClear(){
-        return "create";
+    @GetMapping("members")
+    public String members(Model model){
+        model.addAttribute("memberList", memberService.members());
+        return "/member/member-list";
     }
 }

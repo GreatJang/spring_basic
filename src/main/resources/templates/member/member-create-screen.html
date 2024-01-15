@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>member create</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div th:replace="/member/header :: headerFragment"></div>
+<h2>회원등록</h2>
+<form action="/member/create" method="POST"> <!-- form 형식 기본 -->
+    <p>name : <input id="name" type="text" name="name"></p>
+    <p>email : <input id="email" type="text" name="email"></p>
+    <p>password : <input id="password" type="password" name="password"></p>
+    <p><input type="submit" value="제출"></input></p>
+
+</form>
+</body>
+</html>

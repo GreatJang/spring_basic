@@ -1,42 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>member list</title>
 </head>
 <body>
-    <form action="http://localhost:8080/members">
-        <p>name: <input type="text" name="name"></p>
-        <p>email: <input type="text" name="email"></p>
-        <p>password: <input type="text" name="password"></p>
-        <input type="submit" value="회원목록조회">
+<div th:replace="/member/header :: headerFragment"></div>
         <h2>회원목록조회 결과</h2>
-        <table style="border-collapse: collapse;">
-            <thead>
-            <tr>
-                <th>name</th>
-                <th>email</th>
-                <th>password</th>
+        <table>
+            <tr><th>이름</th><th>이메일</th><th>패스워드</th></tr>
+            <tr th:each = "memberResDto :${memberList}">
+                <td th:text = "${memberResDto.name}"></td>
+                <td th:text = "${memberResDto.email}"></td>
+                <td th:text = "${memberResDto.password}"></td>
             </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>hong</td>
-                <td>hong@naver.com</td>
-                <td>1234</td>
-            </tr>
-            <tr>
-                <td>jang</td>
-                <td>jang@naver.com</td>
-                <td>5678</td>
-            </tr>
-            <tr>
-                <td>kang</td>
-                <td>kang@naver.com</td>
-                <td>1234</td>
-            </tr>
-            </tbody>
         </table>
-    </form>
 </body>
 </html>
