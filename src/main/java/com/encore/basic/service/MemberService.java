@@ -3,8 +3,7 @@ package com.encore.basic.service;
 import com.encore.basic.domain.Member;
 import com.encore.basic.domain.MemberRequestDto;
 import com.encore.basic.domain.MemberResponseDto;
-import com.encore.basic.repository.MemberRepository;
-import com.encore.basic.repository.MemoryMemberRepository;
+import com.encore.basic.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +18,8 @@ public class MemberService {
 //    인터페이스 정의해서 사용 : 다른 DB Repository(jdbc,jpa)로 갈아서 사용할때 편의.
     private final MemberRepository memberRepository;
     @Autowired
-    public MemberService(MemoryMemberRepository memoryMemberRepository){
-        this.memberRepository = memoryMemberRepository;
+    public MemberService(MybatisMemberRepository mybatisMemberRepository){
+        this.memberRepository = mybatisMemberRepository;
     }
 
     public List<MemberResponseDto> findAll(){ //⭐⭐중요패턴 코드 외우기

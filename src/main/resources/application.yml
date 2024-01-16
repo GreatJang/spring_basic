@@ -21,10 +21,24 @@
 #server:
 #  port: 8082
 #
-#spring:
-#  profiles:
-#    active: prod
-#  datasource:
-#    url: jdbc:mariadb://localhost:3306/member
-#    username: root
-#    password: 1234
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver #기술의 근간이기 때문에 jdbc.Driver사용
+    url: jdbc:mariadb://localhost:3306/basic
+    username: root
+    password: 1234
+
+  jpa:
+    database: mysql #mariadb는 동작 잘 안된다.
+#    innoDB 엔진사용 설정
+    database-platform: org.hibernate.dialect.MariaDBDialect #hibernate : jpa의 주요 기술(구현체)
+#    스키마는 사전생성 필요
+    generate-ddl: true # 엔티티를 기준으로 테이블은 자동생성.
+    hibernate:
+#      create옵션은 매번 table을 drop후 생성(서버를 껏다가 킬때마다)
+#      update옵션은 변경사항만 alter를 적용
+#      validate는 실제DB와의 차이만을 check
+#      실무에서는 update 또는 validate 사용 # 실무에서는 절대 create로 하면안된다.
+      ddl-auto: create
+#      jpa가 자동으로 쿼리를 실행할때, 쿼리가 console창에 보여지도록
+    show-sql: true

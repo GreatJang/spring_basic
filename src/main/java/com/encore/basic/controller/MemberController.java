@@ -77,4 +77,6 @@ public class MemberController {
 // memberRepository에서 id찾아와서 memberservice로 전달
 // memberservice 받아온 id에 해당하는 값들을 MemberResponseDto에 세팅 후 MemberResponseDto를 controller로 return
 // memberResponseDto에 있는 값을 memberDetail변수에 담아서 /member/member-detail.html로 전달
+
+//    Controller -> Service -> Repository(jdbc, mybatis, 순수jpa, jpa)
 }

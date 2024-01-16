@@ -3,6 +3,7 @@ package com.encore.basic.domain;
 import lombok.*;
 import org.springframework.cglib.core.Local;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,18 +15,29 @@ import java.time.LocalDateTime;
 // 일단 엔티티(DB에 들어가는 값)와 분리하기위하여 Dto 사용
 // Dto는 사용자와 상호작용 역할
 
+//entity어노테이션을 통해 mariadb의 테이블 및 컬럼을 자동생성
+//class명은 테이블명, 변수명은 컬럼명
+@Entity // 기본생성자가 꼭 필요하다.
+@NoArgsConstructor // 기본생성자 생성
 public class Member {
     @Setter // 메모리 DB때문에 어쩔수 없이 삽입 //실제 BD사용시에는 사용 X
+    @Id //pk설정
+    //Identity = auto_increment설정. auto=JPA구현체가 자동으로 적절한 키생성 전략 선택.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+//    String은 DB에 varchar로 변환
     private String name;
+    @Column(nullable = false, length = 50)
     private String email;
     private String password;
     @Setter
+    @Column(name = "created_time") // name옵션을 통해 DB의 컬럼명 별도 지정가능
     private LocalDateTime create_time;
 
     public Member(String name, String email, String password){
         this.name = name;
         this.email = email;
         this.password = password;
+        this.create_time = LocalDateTime.now(); // 생성자에 바로집어넣기
     }
 }
