@@ -1,14 +1,16 @@
 package com.encore.basic.controller;
 
 import com.encore.basic.domain.MemberRequestDto;
+import com.encore.basic.domain.MemberResponseDto;
 import com.encore.basic.service.MemberService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.NoSuchElementException;
 
 
 // Service 어노테이션을 통해 싱글톤 컴포넌트로 생성 -> 스프링 빈으로 등록
@@ -49,21 +51,30 @@ public class MemberController {
 
     @PostMapping("/member/create")
     public String memberCreate(MemberRequestDto memberRequestDto){
-        memberService.memberCreate(memberRequestDto);
+        memberService.save(memberRequestDto);
 //        url 리다이렉트
         return "redirect:/members";
     }
 
     @GetMapping("members")
     public String members(Model model){
-        model.addAttribute("memberList", memberService.members());
+        model.addAttribute("memberList", memberService.findAll());
         return "/member/member-list";
     }
-    @GetMapping("/member/find")
+    @GetMapping("/member/member-detail")
     public String memberFind(@RequestParam(value = "id") int id, Model model){
-//        memberService.findById(id);
-        model.addAttribute("memberList", memberService.findById(id));
-        return "/member/find";
-    }
+        try {
+            MemberResponseDto memberResponseDto = memberService.findById(id);
+            model.addAttribute("memberDetail", memberResponseDto);
+            return "/member/member-detail";
+        } catch (NoSuchElementException e){
+            return "404-error-page";
+        }
 
+    }
+// Controller에서 memberService로가서 id찾아오라고 책임전가
+// memberservice에서 memberRepository로 가서 id찾아오라고 책임전가
+// memberRepository에서 id찾아와서 memberservice로 전달
+// memberservice 받아온 id에 해당하는 값들을 MemberResponseDto에 세팅 후 MemberResponseDto를 controller로 return
+// memberResponseDto에 있는 값을 memberDetail변수에 담아서 /member/member-detail.html로 전달
 }

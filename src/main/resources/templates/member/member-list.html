@@ -15,7 +15,7 @@
         <td th:text = "${memberResDto.email}"></td>
 <!--        member/find?id=xx 방식으로 요청 -->
 <!--        @는 타임리프(th)의 링크 url표현식-->
-        <td><a th:href="@{/member/find(id=${memberResDto.id})}">상세보기</a></td>
+        <td><a th:href="@{/member/member-detail(id=${memberResDto.id})}">상세보기</a></td>
     </tr>
 </table>
 </body>
