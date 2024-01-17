@@ -3,17 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>member detail</title>
+    <style>
+        #update-form{
+            display: none;
+        }
+    </style>
 </head>
 <body>
-<div th:replace="/member/header :: headerFragment"></div>
 <h2>회원상세 조회</h2>
-    <tr th:each = "memberResDto :${memberDetail}">
-        <h3><p>이름 : <td th:text = "${memberResDto.name}"></td></p></h3>
-        <h3><p>이메일 : <td th:text = "${memberResDto.email}"></td></p></h3>
-        <h3><p>비밀번호 : <td th:text = "${memberResDto.password}"></td></p></h3>
-        <h3><p>가입시간 : <td th:text = "${memberResDto.create_time}"></td></p></h3>
-        <!--        member/find?id=xx 방식으로 요청 -->
-        <!--        @는 타임리프(th)의 링크 url표현식-->
-    </tr>
+<div th:replace="/member/header :: headerFragment"></div>
+
+        <h3><p>이름 : <td th:text = "${memberDetail.name}"></td></p></h3>
+        <h3><p>이메일 : <td th:text = "${memberDetail.email}"></td></p></h3>
+        <h3><p>비밀번호 : <td th:text = "${memberDetail.password}"></td></p></h3>
+        <h3><p>가입시간 : <td th:text = "${memberDetail.create_time}"></td></p></h3>
+<button onclick="update()">수정</button><button><a th:href="@{/member/delete(id=${memberDetail.id})}">삭제</a></button>
+<script>
+    async function update(){
+            document.getElementById('update-form').style.display = 'block';
+    }
+
+</script>
+
+
+
+<div id="update-form">
+    <form action="/member/update" method="POST"> <!-- form 형식 기본 -->
+        <p>id : <input type="text" name="id" th:value="${memberDetail.id}" readonly ></p>
+        <p>name : <input type="text" name="name" th:value="${memberDetail.name}"></p>
+        <p>email : <input type="text" name="email" th:value="${memberDetail.email}" readonly></p>
+        <p>password : <input type="password" name="password" th:value="${memberDetail.password}"></p>
+        <p><input type="submit" value="수정완료"></input></p>
+    </form>
+</div>
 </body>
 </html>

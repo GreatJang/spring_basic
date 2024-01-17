@@ -73,4 +73,15 @@ public class MemberService {
         return memberResponseDto;
     }
 
+    public void delete(MemberResponseDto memberResponseDto) throws EntityNotFoundException{
+        Member member =  memberRepository.findById(memberResponseDto.getId()).orElseThrow(EntityNotFoundException::new);
+        memberRepository.delete(member);
+    }
+    public void memberUpdate(MemberRequestDto memberRequestDto){
+        Member member = memberRepository.findById(memberRequestDto.getId()).orElseThrow(EntityNotFoundException::new);
+        member.setName(memberRequestDto.getName());
+        member.setPassword(memberRequestDto.getPassword());
+        memberRepository.save(member);
+    }
+
 }

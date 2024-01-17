@@ -27,9 +27,11 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 //    String은 DB에 varchar로 변환
+    @Setter
     private String name;
     @Column(nullable = false, length = 50)
     private String email;
+    @Setter
     private String password;
     @Setter
     @Column(name = "created_time") // name옵션을 통해 DB의 컬럼명 별도 지정가능 //jpa
@@ -41,4 +43,7 @@ public class Member {
         this.password = password;
         this.create_time = LocalDateTime.now(); // 생성자에 바로집어넣기
     }
+//    public uppdateMember(String name, String password){
+//        this name = memberRequestDto.getName()
+//    }
 }

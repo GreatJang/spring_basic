@@ -79,8 +79,22 @@ public class MemberController {
         } catch (EntityNotFoundException e){
             return "404-error-page";
         }
-
     }
+    @GetMapping("/member/delete")
+    public String memberDelete(@RequestParam(value = "id") int id){
+        MemberResponseDto memberResponseDto = memberService.findById(id);
+        memberService.delete(memberResponseDto);
+        return "redirect:/members";
+    }
+
+    @PostMapping("/member/update")
+    public String memberUpdate(MemberRequestDto memberRequestDto){
+        memberService.memberUpdate(memberRequestDto);
+        return "redirect:/member/member-detail?id="+memberRequestDto.getId();
+    }
+
+
+
 // Controller에서 memberService로가서 id찾아오라고 책임전가
 // memberservice에서 memberRepository로 가서 id찾아오라고 책임전가
 // memberRepository에서 id찾아와서 memberservice로 전달

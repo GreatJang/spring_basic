@@ -86,4 +86,8 @@ public class JdbcMemberRepository implements MemberRepository {
         }
         return Optional.ofNullable(member);
     }
+
+    @Override
+    public void delete(Member member) {
+    }
 }
