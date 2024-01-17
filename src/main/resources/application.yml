@@ -36,9 +36,12 @@ spring:
     generate-ddl: true # 엔티티를 기준으로 테이블은 자동생성.
     hibernate:
 #      create옵션은 매번 table을 drop후 생성(서버를 껏다가 킬때마다)
-#      update옵션은 변경사항만 alter를 적용
+#      update옵션은 변경사항만 alter를 적용 / 컬럼길이변경X, 컬럼추가반영 -> raw DDL문으로 DB 변경해야함.
 #      validate는 실제DB와의 차이만을 check
 #      실무에서는 update 또는 validate 사용 # 실무에서는 절대 create로 하면안된다.
-      ddl-auto: create
+      ddl-auto: update
 #      jpa가 자동으로 쿼리를 실행할때, 쿼리가 console창에 보여지도록
     show-sql: true
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml

@@ -15,10 +15,11 @@ import java.time.LocalDateTime;
 // 일단 엔티티(DB에 들어가는 값)와 분리하기위하여 Dto 사용
 // Dto는 사용자와 상호작용 역할
 
-//entity어노테이션을 통해 mariadb의 테이블 및 컬럼을 자동생성
+//entity어노테이션을 통해 mariadb의 테이블 및 컬럼을 자동생성 //jpa
 //class명은 테이블명, 변수명은 컬럼명
-@Entity // 기본생성자가 꼭 필요하다.
+@Entity // 기본생성자가 꼭 필요하다. // jpa에서 컬럼 정보를 다 알고 있음
 @NoArgsConstructor // 기본생성자 생성
+@ToString
 public class Member {
     @Setter // 메모리 DB때문에 어쩔수 없이 삽입 //실제 BD사용시에는 사용 X
     @Id //pk설정
@@ -31,7 +32,7 @@ public class Member {
     private String email;
     private String password;
     @Setter
-    @Column(name = "created_time") // name옵션을 통해 DB의 컬럼명 별도 지정가능
+    @Column(name = "created_time") // name옵션을 통해 DB의 컬럼명 별도 지정가능 //jpa
     private LocalDateTime create_time;
 
     public Member(String name, String email, String password){

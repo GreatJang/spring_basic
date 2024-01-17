@@ -1,4 +1,23 @@
 package com.encore.basic.repository;
 
-public class JpaMemberRepository {
+import com.encore.basic.domain.Member;
+
+import java.util.List;
+import java.util.Optional;
+
+public class JpaMemberRepository implements MemberRepository{
+    @Override
+    public List<Member> findAll() {
+        return null;
+    }
+
+    @Override
+    public Member save(Member member) {
+        return null;
+    }
+
+    @Override
+    public Optional<Member> findById(int id) {
+        return Optional.empty();
+    }
 }

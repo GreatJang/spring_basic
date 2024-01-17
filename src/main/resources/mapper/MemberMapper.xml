@@ -9,7 +9,11 @@
     <select id="findById" resultType="com.encore.basic.domain.Member" parameterType="Integer">
         select * from member where id=#{id};
     </select>
-    <insert id="save">
-        insert into member(name, email, password) values(#{name}, #{email}, #{password});
-    </insert>
+<!--    insert가 기본적으로 리턴타입제공하지 않음-->
+<!--    <insert id="save">-->
+<!--        insert into member(name, email, password) values(#{name}, #{email}, #{password});-->
+<!--    </insert>-->
+    <select id="save" resultType="com.encore.basic.domain.Member">
+        insert into member(name, email, password, created_time) values(#{name}, #{email}, #{password}, #{create_time});
+    </select>
 </mapper>
