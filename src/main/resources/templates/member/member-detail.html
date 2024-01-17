@@ -7,14 +7,13 @@
 <body>
 <div th:replace="/member/header :: headerFragment"></div>
 <h2>회원상세 조회</h2>
-<tr th:each = "memberResDto :${memberDetail}">
-    <h3><p>이름 : <td th:text = "${memberResDto.name}"></td></p></h3>
-    <h3><p>이메일 : <td th:text = "${memberResDto.email}"></td></p></h3>
-    <h3><p>비밀번호 : <td th:text = "${memberResDto.password}"></td></p></h3>
-    <h3><p>가입시간 : <td th:text = "${memberResDto.create_time}"></td></p></h3>
-    <!--        member/find?id=xx 방식으로 요청 -->
-    <!--        @는 타임리프(th)의 링크 url표현식-->
-</tr>
-
+    <tr th:each = "memberResDto :${memberDetail}">
+        <h3><p>이름 : <td th:text = "${memberResDto.name}"></td></p></h3>
+        <h3><p>이메일 : <td th:text = "${memberResDto.email}"></td></p></h3>
+        <h3><p>비밀번호 : <td th:text = "${memberResDto.password}"></td></p></h3>
+        <h3><p>가입시간 : <td th:text = "${memberResDto.create_time}"></td></p></h3>
+        <!--        member/find?id=xx 방식으로 요청 -->
+        <!--        @는 타임리프(th)의 링크 url표현식-->
+    </tr>
 </body>
 </html>

@@ -52,8 +52,16 @@ public class MemberController {
 
     @PostMapping("/member/create")
     public String memberCreate(MemberRequestDto memberRequestDto){
+//        트랜잭션 및 예외처리 테스트
+//        try {
+//            memberService.save(memberRequestDto);
+//            //        url 리다이렉트
+//            return "redirect:/members";
+//        }catch (IllegalArgumentException e){
+//            return "404-error-page"; // IllegalArgumentException예외상황 발생시 에러페이지로 이동
+//        }
         memberService.save(memberRequestDto);
-//        url 리다이렉트
+        //        url 리다이렉트
         return "redirect:/members";
     }
 
