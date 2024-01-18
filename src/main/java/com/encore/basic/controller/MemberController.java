@@ -67,10 +67,10 @@ public class MemberController {
 
     @GetMapping("members")
     public String members(Model model){
-        model.addAttribute("memberList", memberService.findAll());
+        model.addAttribute("memberList", memberService.members());
         return "/member/member-list";
     }
-    @GetMapping("/member/member-detail")
+    @GetMapping("/member/find")
     public String memberFind(@RequestParam(value = "id") int id, Model model){
         try {
             MemberResponseDto memberResponseDto = memberService.findById(id);
@@ -82,8 +82,7 @@ public class MemberController {
     }
     @GetMapping("/member/delete")
     public String memberDelete(@RequestParam(value = "id") int id){
-        MemberResponseDto memberResponseDto = memberService.findById(id);
-        memberService.delete(memberResponseDto);
+        memberService.delete(id);
         return "redirect:/members";
     }
 

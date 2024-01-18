@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor // 기본생성자 생성
 @ToString
 public class Member {
-    @Setter // 메모리 DB때문에 어쩔수 없이 삽입 //실제 BD사용시에는 사용 X
+    @Setter // 메모리 DB때문에 어쩔수 없이 삽입 //실제 DB사용시에는 사용 X
     @Id //pk설정
     //Identity = auto_increment설정. auto=JPA구현체가 자동으로 적절한 키생성 전략 선택.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,8 @@ public class Member {
         this.password = password;
         this.create_time = LocalDateTime.now(); // 생성자에 바로집어넣기
     }
-//    public uppdateMember(String name, String password){
-//        this name = memberRequestDto.getName()
-//    }
+    public void updateMember(String name, String password){
+        this.name = name;
+        this.password = password;
+    }
 }
