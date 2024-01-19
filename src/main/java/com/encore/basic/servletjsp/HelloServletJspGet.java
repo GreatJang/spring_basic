@@ -1,6 +1,8 @@
 package com.encore.basic.servletjsp;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,4 +19,12 @@ public class HelloServletJspGet extends HttpServlet {
         req.setAttribute("myData", "jsp test data");
         req.getRequestDispatcher("/WEB-INF/views/hello-jsp.jsp").forward(req, resp);
     }
+
+//    service()메서드는 서블릿에 들어오는 모든요청(get, post, put, delete등)을 처리
+//    다만, 구체적으로 doGet, doPost등의 메서드를 쓰는게 더 좋은 문법.
+//    @Override
+//    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        req.setAttribute("myData", "jsp test data");
+//        req.getRequestDispatcher("/WEB-INF/views/hello-jsp.jsp").forward(req, resp);
+//    }
 }
