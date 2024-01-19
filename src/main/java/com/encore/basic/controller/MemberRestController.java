@@ -6,6 +6,7 @@ import com.encore.basic.domain.Member;
 import com.encore.basic.domain.MemberRequestDto;
 import com.encore.basic.domain.MemberResponseDto;
 import com.encore.basic.service.MemberService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 
+@Api(tags = "회원관리서비스")
 @RestController // responsebody 안붙혀도 됌
 @RequestMapping("/rest")
 public class MemberRestController {
