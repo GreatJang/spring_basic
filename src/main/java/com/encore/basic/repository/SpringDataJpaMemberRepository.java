@@ -19,4 +19,5 @@ import org.springframework.stereotype.Repository;
 //실질적인 구동상황에서 hibernate구현체에 동작을 위임.
 
 public interface SpringDataJpaMemberRepository extends MemberRepository, JpaRepository<Member, Integer> {
+//    JpaRepository<Member, Integer> 왼쪽 = 엔티티 오른쪽 =
 }

@@ -65,7 +65,7 @@ public class MemberController {
         return "redirect:/members";
     }
 
-    @GetMapping("members")
+    @GetMapping("members") // memberlist를 다 출력하기때문에 문제가 생길 수 있음(페이징 처리를 해야한다.)
     public String members(Model model){
         model.addAttribute("memberList", memberService.members());
         return "/member/member-list";

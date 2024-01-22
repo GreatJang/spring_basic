@@ -16,6 +16,9 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
+// service어노테이션을 통해 싱글톤 컴포넌트로 생성 -> 스프링 빈으로 등록
+// 스프링 빈이란 스프링이 생성하고 관리하는 객체를 의미
+// 제어의 역전(Inversion of Control) -> IOC컨테이너가 스프링빈을 관리(빈을 생성, 의존성 주입)
 public class MemberService {
 //    인터페이스 정의해서 사용 : 다른 DB Repository(jdbc,jpa)로 갈아서 사용할때 편의.
     private final MemberRepository memberRepository;

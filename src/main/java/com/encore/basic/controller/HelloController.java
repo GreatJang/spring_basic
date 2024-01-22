@@ -138,6 +138,7 @@ public class HelloController {
     @PostMapping("/httpservlet")
     @ResponseBody
     public String httpServletTest(HttpServletRequest req){
+//        HttpServletRequest객체에서 header정보 추출
         System.out.println(req.getContentType());
         System.out.println(req.getMethod());
 //        session : 로그인(auth) 정보에서 필요한 정보값을 추출할 때 많이 사용

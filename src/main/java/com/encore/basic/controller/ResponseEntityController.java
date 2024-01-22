@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+// ResponseEntity : restapi에서 응답헤더값 + body
+
 @RestController
 @RequestMapping("response/entity")
 public class ResponseEntityController {
