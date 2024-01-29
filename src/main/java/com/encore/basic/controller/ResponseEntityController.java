@@ -51,6 +51,7 @@ public class ResponseEntityController {
         Map<String, Object> body = new HashMap<>();
 //        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         body.put("status", Integer.toString(status.value()));
+        body.put("status message", status.getReasonPhrase());
         body.put("error message", message);
         return new ResponseEntity<>(body, status);
     }
